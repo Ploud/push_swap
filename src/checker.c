@@ -6,21 +6,15 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:29:23 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/06 20:03:25 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/07 19:48:40 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_exception(char *s)
+static int		ft_valid_list(t_push *p)
 {
-	ft_putendl(s);
-	exit(EXIT_FAILURE);
-}
-
-static int ft_valid_list(t_data *p)
-{
-	t_data *c;
+	t_push *c;
 
 	c = p;
 	while (c->next)
@@ -35,14 +29,14 @@ static int ft_valid_list(t_data *p)
 		return (0);
 }
 
-static t_data	*ft_creat_list(int argc, char **argv)
+static t_push	*ft_creat_list(int argc, char **argv)
 {
-	t_data *p;
+	t_push *p;
 
 	p = NULL;
 	if (argc > 0)
 	{
-		if (!(p = malloc(sizeof(t_data))))
+		if (!(p = malloc(sizeof(t_push))))
 			return (NULL);
 		p->value = ft_atoi(argv[0]);
 		p->next = ft_creat_list(argc - 1, &argv[1]);
@@ -52,22 +46,43 @@ static t_data	*ft_creat_list(int argc, char **argv)
 
 int		main(int argc, char **argv)
 {
-	t_data *start;
+	t_push	*listA;
+	t_push	*listB;
+	char	*op;
 
+	listB = NULL;
 	if (argc < 2)
 		ft_exception("incorrect number of arguments");
-	if (!(start = ft_creat_list(argc - 1, &argv[1])))
+	if (!(listA = ft_creat_list(argc - 1, &argv[1])))
 		ft_exception("failed to creat list");
-	if (!ft_valid_list(start))
+	if (!ft_valid_list(listA))
 		ft_exception("Error");
-	/*
-	** Juste pour verfier la bonne creation de la liste
-
-	while (start != NULL)
+	while ((get_next_line(0, &op) > 0))
 	{
-		printf("%d\n", start->value);
-		start = start->next;
+		ft_check_op(op, &listA, &listB);
+		printf("command executed\n");
 	}
+	if (ft_is_sort_increasing(listA) && !listB)
+		ft_putendl("OK");
+	else
+		ft_putendl("KO");
+	/*
+	** Pour afficher la liste;
 	*/
+	int i;
+
+	i = 1;
+	while (listA != NULL)
+	{
+		if (listB)
+		{
+			printf("A%d : %d   B%d : %D\n",i ,listA->value, i, listB->value);
+			listB = listB->next;
+		}
+		else
+			printf("A%d : %d\n",i ,listA->value);
+		listA = listA->next;
+		i++;
+	}
 	return (0);
 }
