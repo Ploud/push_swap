@@ -6,7 +6,7 @@
 #    By: hben-yah <hben-yah@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/04/03 16:51:36 by hben-yah          #+#    #+#              #
-#    Updated: 2018/04/19 18:36:20 by jsobel           ###   ########.fr        #
+#    Updated: 2018/06/10 17:11:06 by juliensobel      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,12 @@ SRCS	=	ft_atoi.c ft_bzero.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 			ft_pow.c ft_sqrt.c ft_putstrtab.c ft_sortinttab.c ft_putnbrtab.c \
 			ft_intswap.c
 OBJS	=	$(SRCS:.c=.o)
-INCL	=	./
+INCL	=	./includes
 FLAG	=	-Wall -Wextra -Werror
 
 all		:	$(NAME)
 
-$(NAME)	:	$(SRCS) libft.h
+$(NAME)	:	$(SRCS) includes/libft.h
 			gcc $(FLAG) -I $(INCL) -c $(SRCS)
 			@ar rc $(NAME) $(OBJS)
 			@ranlib $(NAME)

@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:21:09 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/07 20:06:02 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/10 17:49:27 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ int		ft_reverse_rotate(t_push **p)
 {
 	t_push *tmp;
 
-	tmp = (*p);
-	while (tmp->next && tmp->next->next)
+	if (*p)
 	{
-		tmp = tmp->next;
+		tmp = (*p);
+		while (tmp->next && tmp->next->next)
+		{
+			tmp = tmp->next;
+		}
+		tmp->next->next = *p;
+		*p = tmp->next;
+		tmp->next = NULL;
 	}
-	tmp->next->next = *p;
-	*p = tmp->next;
-	tmp->next = NULL;
 	return (1);
 }
 
@@ -31,14 +34,17 @@ int		ft_rotate(t_push **p)
 {
 	t_push *tmp;
 
-	tmp = (*p);
-	while (tmp->next)
+	if (*p)
 	{
-		tmp = tmp->next;
+		tmp = (*p);
+		while (tmp->next)
+		{
+			tmp = tmp->next;
+		}
+		tmp->next = *p;
+		*p = (*p)->next;
+		tmp->next->next = NULL;
 	}
-	tmp->next = *p;
-	*p = (*p)->next;
-	tmp->next->next = NULL;
 	return (1);
 }
 
@@ -93,6 +99,8 @@ void	ft_check_op(char *op, t_push **listA, t_push **listB)
 		ft_reverse_rotate(listB);
 	else if (!ft_strcmp(op, "rrr") && ft_reverse_rotate(listA))
 		ft_reverse_rotate(listB);
+	else
+		ft_exception("Error");
 }
 
 /*
