@@ -6,13 +6,29 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:29:23 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/07 19:48:40 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/11 17:15:51 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int		ft_valid_list(t_push *p)
+void		ft_free_list(t_push **begin_list)
+{
+	t_push *delete;
+	t_push *tmp;
+
+	tmp = *begin_list;
+	while (tmp)
+	{
+		delete = tmp;
+		tmp = tmp->next;
+		free(delete);
+	}
+	free(tmp);
+	*begin_list = NULL;
+}
+
+int		ft_valid_list(t_push *p)
 {
 	t_push *c;
 
@@ -29,7 +45,7 @@ static int		ft_valid_list(t_push *p)
 		return (0);
 }
 
-static t_push	*ft_creat_list(int argc, char **argv)
+t_push	*ft_creat_list(int argc, char **argv)
 {
 	t_push *p;
 
@@ -84,5 +100,7 @@ int		main(int argc, char **argv)
 		listA = listA->next;
 		i++;
 	}
+	ft_free_list(&listA);
+	ft_free_list(&listB);
 	return (0);
 }
