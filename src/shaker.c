@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 17:41:47 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/12 19:30:05 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/14 19:19:38 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	shake_it_all(t_push **a, t_push **b, int *count)
 {
-	while (*a && !ft_is_sort_increasing(*a))
+	while (*a && !(ft_is_sort_increasing(*a) && (!*b || (*a)->value > (*b)->value)))
 	{
 		if ((*a)->next && (*a)->value > (*a)->next->value && *b && (*b)->next && (*b)->value < (*b)->next->value)
 			ss(a, b);
@@ -26,7 +26,7 @@ void	shake_it_all(t_push **a, t_push **b, int *count)
 			pb(a, b);
 		(*count)++;
 	}
-	while (*b && !ft_is_sort_decreasing(*b))
+	while (*b && !(ft_is_sort_decreasing(*b) && (!*a || (*a)->value > (*b)->value)))
 	{
 		if (*a && (*a)->next && (*a)->value > (*a)->next->value && (*b)->next && (*b)->value < (*b)->next->value)
 			ss(a, b);
@@ -69,13 +69,23 @@ int		divide_to_conquer(t_push **a, t_push **b, int med, int *c)
 	return (0);
 }
 
-int		ft_shaker(t_push **a, t_push **b, int mediane)
+int		ft_shaker(t_push **a, t_push **b)
 {
 	int count;
+	int i;
+	int med;
+	int	nb;
 
 	count = 0;
-	if (divide_to_conquer(a, b, mediane, &count))
-		return (count);
+	i = 1;
+	nb = get_len(*a);
+	while (nb >= 4)
+	{
+		med = get_mediane(*a, nb / 4);
+		if (divide_to_conquer(a, b, med, &count))
+			return (count);
+		nb = get_len(*a);
+	}
 	shake_it_all(a, b, &count);
 	return (count);
 }

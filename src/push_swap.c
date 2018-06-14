@@ -6,7 +6,7 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 18:18:00 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/12 19:39:30 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/14 18:34:27 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int		main(int argc, char **argv)
 {
 	t_push	*a;
 	t_push	*b;
-	int			nb;
-	int			med;
+	int		nb;
 
 	b = NULL;
 	if (argc < 2)
@@ -26,9 +25,7 @@ int		main(int argc, char **argv)
 		ft_exception("failed to creat list");
 	if (!ft_valid_list(a))
 		ft_exception("Error");
-	nb = get_len(a);
-	med = get_mediane(a, nb / 2);
-	nb = ft_shaker(&a, &b, med);
+	nb = ft_shaker(&a, &b);
 	/*
 	** Pour afficher la liste;
 

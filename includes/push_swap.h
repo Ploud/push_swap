@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:32:07 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/12 19:23:54 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/14 18:29:55 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int					check(t_push **a, t_push **b, int *count);
 
 void				shake_it_all(t_push **a, t_push **b, int *count);
 int					divide_to_conquer(t_push **a, t_push **b, int med, int *c);
-int					ft_shaker(t_push **a, t_push **b, int mediane);
+int					ft_shaker(t_push **a, t_push **b);
 //int				ft_is_digit(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:14:53 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/12 19:29:44 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/14 17:09:33 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int				ft_is_sort_decreasing(t_push *p)
 
 int		check(t_push **a, t_push **b, int *count)
 {
-	if (ft_is_sort_increasing(*a) && ft_is_sort_decreasing(*b))
+	if (ft_is_sort_increasing(*a) && ft_is_sort_decreasing(*b)
+	&& (!*a || !*b || (*a)->value > (*b)->value))
 	{
 		while (*b)
 		{
