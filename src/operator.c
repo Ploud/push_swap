@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:21:09 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/11 19:15:05 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/12 17:46:49 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,30 +75,30 @@ int		ft_swap(t_push **p)
 	return (1);
 }
 
-void	ft_check_op(char *op, t_push **listA, t_push **listB)
+void	ft_check_op(char *op, t_push **a, t_push **b)
 {
 	if (!ft_strcmp(op, "sa"))
-		ft_swap(listA);
+		ft_swap(a);
 	else if (!ft_strcmp(op, "sb"))
-		ft_swap(listB);
-	else if (!ft_strcmp(op, "ss") && ft_swap(listA))
-		ft_swap(listB);
+		ft_swap(b);
+	else if (!ft_strcmp(op, "ss") && ft_swap(a))
+		ft_swap(b);
 	else if (!ft_strcmp(op, "pa"))
-		ft_push(listA, listB);
+		ft_push(a, b);
 	else if (!ft_strcmp(op, "pb"))
-		ft_push(listB, listA);
+		ft_push(b, a);
 	else if (!ft_strcmp(op, "ra"))
-		ft_rotate(listA);
+		ft_rotate(a);
 	else if (!ft_strcmp(op, "rb"))
-		ft_rotate(listB);
-	else if (!ft_strcmp(op, "rr") && ft_rotate(listA))
-		ft_rotate(listB);
+		ft_rotate(b);
+	else if (!ft_strcmp(op, "rr") && ft_rotate(a))
+		ft_rotate(b);
 	else if (!ft_strcmp(op, "rra"))
-		ft_reverse_rotate(listA);
+		ft_reverse_rotate(a);
 	else if (!ft_strcmp(op, "rrb"))
-		ft_reverse_rotate(listB);
-	else if (!ft_strcmp(op, "rrr") && ft_reverse_rotate(listA))
-		ft_reverse_rotate(listB);
+		ft_reverse_rotate(b);
+	else if (!ft_strcmp(op, "rrr") && ft_reverse_rotate(a))
+		ft_reverse_rotate(b);
 	else
 		ft_exception("Error");
 }

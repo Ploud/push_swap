@@ -6,24 +6,37 @@
 #    By: lucien <lucien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:25:50 by lucien            #+#    #+#              #
-#    Updated: 2018/06/10 17:13:21 by juliensobel      ###   ########.fr        #
+#    Updated: 2018/06/12 17:58:39 by juliensobel      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME1	= push_swap
 NAME2	= checker
 
-SRC1	=	checker.c \
+SRC1	=	push_swap.c \
+				list.c \
 				exception.c \
-				get_next_line.c \
+				get_data.c \
 				operator.c \
-				sort.c
+				sort.c \
+				push.c \
+				reverse.c \
+				rotate.c \
+				shaker.c \
+				swap.c
 
 SRC2	=	checker.c \
+				list.c \
 				exception.c \
+				get_data.c \
 				get_next_line.c \
 				operator.c \
-				sort.c
+				sort.c \
+				push.c \
+				reverse.c \
+				rotate.c \
+				shaker.c \
+				swap.c
 
 OBJ1		= $(addprefix ./obj/,$(SRC1:.c=.o))
 OBJ2		= $(addprefix ./obj/,$(SRC2:.c=.o))

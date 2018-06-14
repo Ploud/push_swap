@@ -6,7 +6,7 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 18:18:00 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/11 17:42:08 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/12 19:39:30 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,40 @@
 
 int		main(int argc, char **argv)
 {
-	t_push	*listA;
-	t_push	*listB;
+	t_push	*a;
+	t_push	*b;
+	int			nb;
+	int			med;
 
-	listB = NULL;
+	b = NULL;
 	if (argc < 2)
 		ft_exception("incorrect number of arguments");
-	if (!(listA = ft_creat_list(argc - 1, &argv[1])))
+	if (!(a = ft_creat_list(argc - 1, &argv[1])))
 		ft_exception("failed to creat list");
-	if (!ft_valid_list(listA))
+	if (!ft_valid_list(a))
 		ft_exception("Error");
-	while (!(ft_is_sort_increasing(listA) && !listB))
-	{
-		ft_check_op(op, &listA, &listB);
-		printf("command executed\n");
-	}
+	nb = get_len(a);
+	med = get_mediane(a, nb / 2);
+	nb = ft_shaker(&a, &b, med);
 	/*
 	** Pour afficher la liste;
-	*/
+
 	int i;
 
 	i = 1;
-	while (listA != NULL)
+	while (a != NULL)
 	{
-		if (listB)
+		if (b)
 		{
-			printf("A%d : %d   B%d : %D\n",i ,listA->value, i, listB->value);
-			listB = listB->next;
+			printf("A%d : %d   B%d : %D\n",i ,a->value, i, b->value);
+			b = b->next;
 		}
 		else
-			printf("A%d : %d\n",i ,listA->value);
-		listA = listA->next;
+			printf("A%d : %d\n",i ,a->value);
+		a = a->next;
 		i++;
-	}
+	}	*/
+	//ft_free_list(&a);
+	printf("\nresultat : %d\n", nb);
 	return (0);
 }

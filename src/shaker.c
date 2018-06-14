@@ -6,35 +6,37 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 17:41:47 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/11 19:59:40 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/12 19:30:05 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	shake_it_all(t_push **a, t_push **b, int *count);
+#include "push_swap.h"
+
+void	shake_it_all(t_push **a, t_push **b, int *count)
 {
-	while (*a && !check(a, b, count))
+	while (*a && !ft_is_sort_increasing(*a))
 	{
-		if ((*a)->value > (*a)->next->value && *b && (*b)->value < (*b)->next->value)
+		if ((*a)->next && (*a)->value > (*a)->next->value && *b && (*b)->next && (*b)->value < (*b)->next->value)
 			ss(a, b);
-		else if ((*a)->value > (*a)->next->value)
+		else if ((*a)->next && (*a)->value > (*a)->next->value)
 			sa(a);
-		else if (*b && (*b)->value < (*b)->next->value)
+		else if (*b && (*b)->next && (*b)->value < (*b)->next->value)
 			sb(b);
 		else
 			pb(a, b);
-		count++;
+		(*count)++;
 	}
-	while (*b && !check(a, b, count))
+	while (*b && !ft_is_sort_decreasing(*b))
 	{
-		if (*a && (*a)->value > (*a)->next->value && (*b)->value < (*b)->next->value)
+		if (*a && (*a)->next && (*a)->value > (*a)->next->value && (*b)->next && (*b)->value < (*b)->next->value)
 			ss(a, b);
-		else if (*a && (*a)->value > (*a)->next->value)
+		else if (*a && (*a)->next && (*a)->value > (*a)->next->value)
 			sa(a);
-		else if ((*b)->value < (*b)->next->value)
+		else if ((*b)->next && (*b)->value < (*b)->next->value)
 			sb(b);
 		else
 			pa(a, b);
-		count++;
+		(*count)++;
 	}
 	if (!check(a, b, count))
 		shake_it_all(a, b, count);

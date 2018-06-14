@@ -6,79 +6,31 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:29:23 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/11 17:15:51 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/12 17:52:58 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		ft_free_list(t_push **begin_list)
-{
-	t_push *delete;
-	t_push *tmp;
-
-	tmp = *begin_list;
-	while (tmp)
-	{
-		delete = tmp;
-		tmp = tmp->next;
-		free(delete);
-	}
-	free(tmp);
-	*begin_list = NULL;
-}
-
-int		ft_valid_list(t_push *p)
-{
-	t_push *c;
-
-	c = p;
-	while (c->next)
-	{
-		c = c->next;
-		if (c->value == p->value)
-			return (0);
-	}
-	if (!p->next || (p->next && ft_valid_list(p->next)))
-		return (1);
-	else
-		return (0);
-}
-
-t_push	*ft_creat_list(int argc, char **argv)
-{
-	t_push *p;
-
-	p = NULL;
-	if (argc > 0)
-	{
-		if (!(p = malloc(sizeof(t_push))))
-			return (NULL);
-		p->value = ft_atoi(argv[0]);
-		p->next = ft_creat_list(argc - 1, &argv[1]);
-	}
-	return (p);
-}
-
 int		main(int argc, char **argv)
 {
-	t_push	*listA;
-	t_push	*listB;
+	t_push	*a;
+	t_push	*b;
 	char	*op;
 
-	listB = NULL;
+	b = NULL;
 	if (argc < 2)
 		ft_exception("incorrect number of arguments");
-	if (!(listA = ft_creat_list(argc - 1, &argv[1])))
+	if (!(a = ft_creat_list(argc - 1, &argv[1])))
 		ft_exception("failed to creat list");
-	if (!ft_valid_list(listA))
+	if (!ft_valid_list(a))
 		ft_exception("Error");
 	while ((get_next_line(0, &op) > 0))
 	{
-		ft_check_op(op, &listA, &listB);
+		ft_check_op(op, &a, &b);
 		printf("command executed\n");
 	}
-	if (ft_is_sort_increasing(listA) && !listB)
+	if (ft_is_sort_increasing(a) && !b)
 		ft_putendl("OK");
 	else
 		ft_putendl("KO");
@@ -88,19 +40,19 @@ int		main(int argc, char **argv)
 	int i;
 
 	i = 1;
-	while (listA != NULL)
+	while (a != NULL)
 	{
-		if (listB)
+		if (b)
 		{
-			printf("A%d : %d   B%d : %D\n",i ,listA->value, i, listB->value);
-			listB = listB->next;
+			printf("A%d : %d   B%d : %D\n",i ,a->value, i, b->value);
+			b = b->next;
 		}
 		else
-			printf("A%d : %d\n",i ,listA->value);
-		listA = listA->next;
+			printf("A%d : %d\n",i ,a->value);
+		a = a->next;
 		i++;
 	}
-	ft_free_list(&listA);
-	ft_free_list(&listB);
+	ft_free_list(&a);
+	ft_free_list(&b);
 	return (0);
 }
