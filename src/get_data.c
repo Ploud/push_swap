@@ -6,7 +6,7 @@
 /*   By: lucien <lucien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/09 01:13:24 by lucien            #+#    #+#             */
-/*   Updated: 2018/06/12 19:23:56 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/15 20:17:46 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			get_max(t_push *a)
 	t_push	*tmp;
 	int		int_max;
 
-	int_max = 0;
+	int_max = -2147483648;
 	tmp = a;
 	while (tmp != NULL)
 	{
@@ -80,7 +80,7 @@ int			get_mediane(t_push *a, int len)
 	int		int_min;
 	int		mediane;
 
-	mediane = 0;
+	mediane = -2147483648;
 	tmp = a;
 	while (len > 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:32:07 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/14 18:29:55 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/15 20:19:28 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 //# define EXIT_ERROR -1
 # define BUFF_SIZE  10
+# define SMALL_SIZE 4
+# define MEDIUM_SIZE 9
 
 typedef struct		s_push
 {
@@ -76,11 +78,31 @@ int					ss(t_push **a, t_push **b);
 
 int					ft_is_sort_increasing(t_push *p);
 int					ft_is_sort_decreasing(t_push *p);
+int					ft_sort(t_push **a, t_push **b);
 int					check(t_push **a, t_push **b, int *count);
 
 void				shake_it_all(t_push **a, t_push **b, int *count);
 int					divide_to_conquer(t_push **a, t_push **b, int med, int *c);
 int					ft_shaker(t_push **a, t_push **b);
-//int				ft_is_digit(char *str);
+
+/*
+** push_swap -- process
+*/
+
+void				ft_process(t_push **a, t_push **b);
+void				sort_3less_int(t_push **a, int len, int int_min,
+					int int_max);
+void				basic_selective_sort(t_push **a, t_push **b, int len);
+void				launch_quick_sort(t_push **a, t_push **b);
+
+/*
+**push_swap -- quick_sort
+*/
+
+void				process_distri_pyramid(t_push **a, t_push **b);
+void				process_selec_sort_opti(t_push **a, t_push **b);
+int					opti_get_max_moins_un(t_push **a, int max_b);
+void				opti_place_ints_max(t_push **a, t_push **b, int ret);
+int					where_is_next(t_push *a, int mediane);
 
 #endif

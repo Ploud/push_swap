@@ -6,7 +6,7 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 18:18:00 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/14 18:34:27 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/15 20:23:12 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		main(int argc, char **argv)
 {
 	t_push	*a;
 	t_push	*b;
-	int		nb;
+	//int		nb;
 
 	b = NULL;
 	if (argc < 2)
@@ -25,7 +25,8 @@ int		main(int argc, char **argv)
 		ft_exception("failed to creat list");
 	if (!ft_valid_list(a))
 		ft_exception("Error");
-	nb = ft_shaker(&a, &b);
+	ft_process(&a, &b);
+	//nb = ft_shaker(&a, &b);
 	/*
 	** Pour afficher la liste;
 
@@ -44,7 +45,14 @@ int		main(int argc, char **argv)
 		a = a->next;
 		i++;
 	}	*/
+	t_push	*tmp, *tmp2;
+	tmp = a;
+	tmp2 = b;
+	if (ft_is_sort_increasing(tmp) && !tmp2)
+		ft_putendl("OK");
+	else
+		ft_putendl("KO");
 	//ft_free_list(&a);
-	printf("\nresultat : %d\n", nb);
+	//printf("\nresultat : %d\n", nb);
 	return (0);
 }
