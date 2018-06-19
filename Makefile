@@ -6,7 +6,7 @@
 #    By: lucien <lucien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:25:50 by lucien            #+#    #+#              #
-#    Updated: 2018/06/15 20:20:58 by jsobel           ###   ########.fr        #
+#    Updated: 2018/06/18 18:52:46 by jsobel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME2	= checker
 
 SRC1	=	push_swap.c			\
 			list.c				\
+			operator.c 			\
 			swap.c				\
 			push.c				\
 			rotate.c			\

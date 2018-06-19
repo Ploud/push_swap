@@ -6,47 +6,20 @@
 /*   By: lucien <lucien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 00:12:58 by lucien            #+#    #+#             */
-/*   Updated: 2018/06/15 20:20:15 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/19 19:58:47 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*static int		divide_to_conquer(t_push **a, t_push **b, int med)
-{
-	int		flag;
-	t_push	*tmp;
-
-	flag = 1;
-	while (flag)
-	{
-		if (check(a, b, c))
-			return (1);
-		flag = 0;
-		if ((*a)->value <= med)
-			pb(a, b);
-		else
-			ra(a);
-		tmp = *a;
-		while (tmp)
-		{
-			if (tmp->value <= med)
-				flag = 1;
-			tmp = tmp->next;
-		}
-		(*c)++;
-	}
-	return (0);
-}*/
-
 void		process_distri_pyramid(t_push **a, t_push **b)
 {
 	int		div_mediane;
-	//int		dir;
+	int		dir;
 
 	div_mediane = get_len(*a) / 100 + 3;
-	//dir = where_is_next(*a, get_mediane(*a, get_len(a) / div_mediane));
-	while (get_len(*a) >= div_mediane && ft_sort(a, b))
+	dir = where_is_next(*a, get_mediane(*a, get_len(*a) / div_mediane));
+	while (get_len(*a) >= div_mediane && !ft_sort(a, b))
 	{
 		if ((*a)->value <= get_mediane(*a, get_len(*a) / div_mediane / 2))
 		{
@@ -58,9 +31,14 @@ void		process_distri_pyramid(t_push **a, t_push **b)
 		//else if (dir)
 		//	ra(a);
 		else
-			rra(a);
+			ra(a);
 	}
-	basic_selective_sort(a, b, get_len(*a));
+	if (get_len(*a) < SMALL_SIZE)
+		sort_3less_int(a, get_len(*a), get_min(*a), get_max(*a));
+	else if (get_len(*a) < MEDIUM_SIZE)
+		basic_selective_sort(a, b, get_len(*a));
+	else if (!ft_sort(a, b))
+		process_distri_pyramid(a, b);
 }
 
 void		process_selec_sort_opti(t_push **a, t_push **b)
@@ -122,7 +100,7 @@ int			opti_get_max_moins_un(t_push **a, int max_b)
 	t_push	*tmp;
 	int		int_max;
 
-	int_max = 0;
+	int_max = -2147483648;
 	tmp = (*a);
 	while (tmp != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: lucien <lucien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 16:23:26 by lucien            #+#    #+#             */
-/*   Updated: 2018/06/10 20:20:11 by lucien           ###   ########.fr       */
+/*   Updated: 2018/06/19 20:27:31 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,22 @@
 
 void	pa(t_push **a, t_push **b)
 {
-	t_push	*tmp;
-
-	if (*b)
+	ft_push(a, b);
+	if (*a)
 	{
-		tmp = (*b)->next;
-		(*b)->next = *a;
-		*a = *b;
-		*b = tmp;
+		(*a)->count++;
+		if ((*a)->display)
+			ft_putendl("pa");
 	}
-	ft_putendl("pa");
 }
 
 void	pb(t_push **b, t_push **a)
 {
-	t_push	*tmp;
-
-	if (*b)
+	ft_push(a, b);
+	if (*a)
 	{
-		tmp = (*b)->next;
-		(*b)->next = *a;
-		*a = *b;
-		*b = tmp;
+		(*a)->count++;
+		if ((*a)->display)
+			ft_putendl("pb");
 	}
-	ft_putendl("pb");
 }

@@ -6,7 +6,7 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 18:18:00 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/15 20:23:12 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/19 20:34:42 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int		main(int argc, char **argv)
 
 	b = NULL;
 	if (argc < 2)
-		ft_exception("incorrect number of arguments");
-	if (!(a = ft_creat_list(argc - 1, &argv[1])))
+		ft_exception("");
+	if (!(a = ft_creat_list(argc - 1, &argv[1], 1)))
 		ft_exception("failed to creat list");
 	if (!ft_valid_list(a))
 		ft_exception("Error");
@@ -44,7 +44,7 @@ int		main(int argc, char **argv)
 			printf("A%d : %d\n",i ,a->value);
 		a = a->next;
 		i++;
-	}	*/
+	}*/
 	t_push	*tmp, *tmp2;
 	tmp = a;
 	tmp2 = b;
@@ -52,7 +52,7 @@ int		main(int argc, char **argv)
 		ft_putendl("OK");
 	else
 		ft_putendl("KO");
-	//ft_free_list(&a);
+	ft_free_list(&a);
 	//printf("\nresultat : %d\n", nb);
 	return (0);
 }

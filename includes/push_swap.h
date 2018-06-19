@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:32:07 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/15 20:19:28 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/19 20:21:29 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@
 # include <sys/stat.h>
 
 //# define EXIT_ERROR -1
-# define BUFF_SIZE  10
+# define BUFF_SIZE  32
 # define SMALL_SIZE 4
 # define MEDIUM_SIZE 9
 
 typedef struct		s_push
 {
 	int				value;
+	int				count;
+	int				display;
 	struct s_push	*next;
 }					t_push;
 
@@ -41,8 +43,9 @@ typedef struct		s_data
 	struct s_data	*next;
 }					t_data;
 
-t_push				*ft_creat_list(int argc, char **argv);
+t_push				*ft_creat_list(int argc, char **argv, int display);
 int					ft_valid_list(t_push *p);
+int					ft_bigger_than_integer(char *p, int value, int i);
 void				ft_free_list(t_push **begin_list);
 
 void				ft_exception(char *s);
@@ -105,4 +108,14 @@ int					opti_get_max_moins_un(t_push **a, int max_b);
 void				opti_place_ints_max(t_push **a, t_push **b, int ret);
 int					where_is_next(t_push *a, int mediane);
 
+/*
+** push_swap -- get_data
+*/
+/*
+int					get_min(t_push **a);
+int					get_max(t_push **a);
+int					get_len(t_push **a);
+int					get_position_int(t_push **a, int nb);
+int					get_mediane(t_push **a, int len);
+*/
 #endif

@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:21:09 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/12 17:46:49 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/18 18:51:37 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ int		ft_reverse_rotate(t_push **p)
 		{
 			tmp = tmp->next;
 		}
-		tmp->next->next = *p;
-		*p = tmp->next;
-		tmp->next = NULL;
+		if (tmp->next)
+		{
+			tmp->next->next = *p;
+			*p = tmp->next;
+			tmp->next = NULL;
+		}
 	}
 	return (1);
 }

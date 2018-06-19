@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:29:23 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/12 17:52:58 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/19 20:21:47 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		main(int argc, char **argv)
 	b = NULL;
 	if (argc < 2)
 		ft_exception("incorrect number of arguments");
-	if (!(a = ft_creat_list(argc - 1, &argv[1])))
+	if (!(a = ft_creat_list(argc - 1, &argv[1], 0)))
 		ft_exception("failed to creat list");
 	if (!ft_valid_list(a))
 		ft_exception("Error");
