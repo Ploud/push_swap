@@ -6,7 +6,7 @@
 #    By: lucien <lucien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:25:50 by lucien            #+#    #+#              #
-#    Updated: 2018/06/18 18:52:46 by jsobel           ###   ########.fr        #
+#    Updated: 2018/06/20 12:25:38 by jsobel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC1	=	push_swap.c			\
 			rotate.c			\
 			reverse.c			\
 			process.c			\
+			shaker.c			\
 			get_data.c			\
 			sort.c				\
 			quick_sort.c		\

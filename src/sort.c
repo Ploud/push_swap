@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:14:53 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/18 17:45:48 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/20 12:22:39 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			ft_sort(t_push **a, t_push **b)
 		return (0);
 }
 
-int		check(t_push **a, t_push **b, int *count)
+int		check(t_push **a, t_push **b)
 {
 	if (ft_is_sort_increasing(*a) && ft_is_sort_decreasing(*b)
 	&& (!*a || !*b || (*a)->value > (*b)->value))
@@ -51,7 +51,6 @@ int		check(t_push **a, t_push **b, int *count)
 		while (*b)
 		{
 			pa(a, b);
-			(*count)++;
 		}
 		return (1);
 	}

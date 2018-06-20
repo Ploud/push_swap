@@ -6,7 +6,7 @@
 /*   By: lucien <lucien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/08 16:27:58 by lucien            #+#    #+#             */
-/*   Updated: 2018/06/19 20:31:33 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/20 13:53:44 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ra(t_push **a)
 {
 	ft_rotate(a);
-	if (*a)
+	if (*a && (*a)->next)
 	{
 		(*a)->count++;
 		if ((*a)->display)
@@ -27,7 +27,7 @@ int		ra(t_push **a)
 int		rb(t_push **b)
 {
 	ft_rotate(b);
-	if (*b)
+	if (*b && (*b)->next)
 	{
 		(*b)->count++;
 		if ((*b)->display)
@@ -40,17 +40,23 @@ int		rr(t_push **a, t_push **b)
 {
 	ft_rotate(a);
 	ft_rotate(b);
-	if (*a)
+	if (*a && *b && (*a)->next && (*b)->next)
 	{
 		(*a)->count++;
 		if ((*a)->display)
 			ft_putendl("rr");
 	}
-	else if (*b)
+	else if (*a && (*a)->next)
+	{
+		(*a)->count++;
+		if ((*a)->display)
+			ft_putendl("ra");
+	}
+	else if (*b && (*b)->next)
 	{
 		(*b)->count++;
 		if ((*b)->display)
-			ft_putendl("rr");
+			ft_putendl("rb");
 	}
 	return (1);
 }

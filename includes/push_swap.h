@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:32:07 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/19 20:21:29 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/20 14:25:41 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ int					ft_valid_list(t_push *p);
 int					ft_bigger_than_integer(char *p, int value, int i);
 void				ft_free_list(t_push **begin_list);
 
+int					global_count(t_push *a);
+void				print_list(t_push *a, t_push *b);
+
 void				ft_exception(char *s);
 
 int					get_next_line(const int fd, char **line);
@@ -82,10 +85,10 @@ int					ss(t_push **a, t_push **b);
 int					ft_is_sort_increasing(t_push *p);
 int					ft_is_sort_decreasing(t_push *p);
 int					ft_sort(t_push **a, t_push **b);
-int					check(t_push **a, t_push **b, int *count);
+int					check(t_push **a, t_push **b);
 
-void				shake_it_all(t_push **a, t_push **b, int *count);
-int					divide_to_conquer(t_push **a, t_push **b, int med, int *c);
+void				shake_it_all(t_push **a, t_push **b);
+int					divide_to_conquer(t_push **a, t_push **b, int med);
 int					ft_shaker(t_push **a, t_push **b);
 
 /*

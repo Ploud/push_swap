@@ -6,13 +6,13 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 17:41:47 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/15 17:02:16 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/20 14:25:23 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	shake_it_all(t_push **a, t_push **b, int *count)
+void	shake_it_all(t_push **a, t_push **b)
 {
 	while (*a && !(ft_is_sort_increasing(*a) && (!*b || (*a)->value > (*b)->value)))
 	{
@@ -24,7 +24,6 @@ void	shake_it_all(t_push **a, t_push **b, int *count)
 			sb(b);
 		else
 			pb(a, b);
-		(*count)++;
 	}
 	while (*b && !(ft_is_sort_decreasing(*b) && (!*a || (*a)->value > (*b)->value)))
 	{
@@ -36,13 +35,12 @@ void	shake_it_all(t_push **a, t_push **b, int *count)
 			sb(b);
 		else
 			pa(a, b);
-		(*count)++;
 	}
-	if (!check(a, b, count))
-		shake_it_all(a, b, count);
+	if (!check(a, b))
+		shake_it_all(a, b);
 }
 
-int		divide_to_conquer(t_push **a, t_push **b, int med, int *c)
+int		divide_to_conquer(t_push **a, t_push **b, int med)
 {
 	int		flag;
 	t_push	*tmp;
@@ -50,10 +48,15 @@ int		divide_to_conquer(t_push **a, t_push **b, int med, int *c)
 	flag = 1;
 	while (flag)
 	{
-		if (check(a, b, c))
+		if (check(a, b))
 			return (1);
 		flag = 0;
-		if ((*a)->value <= med)
+		/*if ((*a)->value <= med / 2)
+		{
+			pb(a, b);
+			rrb(b);
+		}
+		else*/ if ((*a)->value <= med)
 			pb(a, b);
 		else
 			ra(a);
@@ -64,28 +67,27 @@ int		divide_to_conquer(t_push **a, t_push **b, int med, int *c)
 				flag = 1;
 			tmp = tmp->next;
 		}
-		(*c)++;
 	}
 	return (0);
 }
 
 int		ft_shaker(t_push **a, t_push **b)
 {
-	int count;
-	int i;
-	int med;
+	int	i;
+	int	med;
 	int	nb;
+	int	diviseur;
 
-	count = 0;
 	i = 1;
-	nb = get_len(*a);
-	while (nb >= 4)
+	nb = c == 0 ? 0 : get_len(*a);
+	diviseur = nb / 100 + 3;
+	while (nb >= diviseur)
 	{
-		med = get_mediane(*a, nb / 4);
-		if (divide_to_conquer(a, b, med, &count))
-			return (count);
+		med = get_mediane(*a, nb / diviseur);
+		if (divide_to_conquer(a, b, med))
+			return (1);
 		nb = get_len(*a);
 	}
-	shake_it_all(a, b, &count);
-	return (count);
+	shake_it_all(a, b);
+	return (1);
 }
