@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:32:07 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/20 14:25:41 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/21 18:26:09 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int					global_count(t_push *a);
 void				print_list(t_push *a, t_push *b);
 
 void				ft_exception(char *s);
+
+int					simple_case(t_push **a, t_push **b);
 
 int					get_next_line(const int fd, char **line);
 
