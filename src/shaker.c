@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 17:41:47 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/20 14:25:23 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/22 18:30:33 by juliensobel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		divide_to_conquer(t_push **a, t_push **b, int med)
 	return (0);
 }
 
-int		ft_shaker(t_push **a, t_push **b)
+void		ft_shaker(t_push **a, t_push **b)
 {
 	int	i;
 	int	med;
@@ -79,15 +79,14 @@ int		ft_shaker(t_push **a, t_push **b)
 	int	diviseur;
 
 	i = 1;
-	nb = c == 0 ? 0 : get_len(*a);
+	nb = get_len(*a);
 	diviseur = nb / 100 + 3;
 	while (nb >= diviseur)
 	{
 		med = get_mediane(*a, nb / diviseur);
 		if (divide_to_conquer(a, b, med))
-			return (1);
+			return ;
 		nb = get_len(*a);
 	}
 	shake_it_all(a, b);
-	return (1);
 }
