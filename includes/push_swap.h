@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:32:07 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/22 18:23:59 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/25 17:34:21 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void				print_list(t_push *a, t_push *b);
 void				ft_exception(char *s);
 
 void				end_reverse(t_push **a, t_push **b);
-void					simple_case(t_push **a, t_push **b);
+void				simple_case(t_push **a, t_push **b);
 
 int					get_next_line(const int fd, char **line);
 
@@ -92,7 +92,7 @@ int					check(t_push **a, t_push **b);
 
 void				shake_it_all(t_push **a, t_push **b);
 int					divide_to_conquer(t_push **a, t_push **b, int med);
-void					ft_shaker(t_push **a, t_push **b);
+void				ft_shaker(t_push **a, t_push **b);
 
 /*
 ** push_swap -- process

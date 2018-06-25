@@ -6,7 +6,7 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:52:13 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/19 20:33:20 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/25 17:39:42 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_push	*ft_creat_list(int argc, char **argv, int display)
 			i++;
 		}
 		if (!(p = malloc(sizeof(t_push))))
-			return (NULL);
+			ft_exception("malloc failed");
 		p->value = ft_atoi(argv[0]);
 		if (ft_bigger_than_integer(argv[0], p->value, i - 1))
 			ft_exception("Error");
