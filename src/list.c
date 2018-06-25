@@ -6,7 +6,7 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:52:13 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/25 17:39:42 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/25 19:20:46 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ int		ft_valid_list(t_push *p)
 int		ft_bigger_than_integer(char *p, int value, int i)
 {
 	if (((value > 0 || i > 11) && p[0] == '-') ||
-	(value % 10) != (p[i] - 48) ||
-	((value < 0 || i > 10) && p[0] != '-'))
+	(value >= 0 && (value % 10) != (p[i] - 48)) ||
+	(value < 0 && (value % 10) != -(p[i] - 48)) ||
+	((value < 0 || i > 11) && p[0] != '-'))
 		return (1);
 	return (0);
 }
@@ -65,7 +66,7 @@ t_push	*ft_creat_list(int argc, char **argv, int display)
 	{
 		while (argv[0][i])
 		{
-			if (argv[0][0] != '-' && (argv[0][i] < 48 || argv[0][i] > 57))
+			if (i && argv[0][0] != '-' && (argv[0][i] < 48 || argv[0][i] > 57))
 				ft_exception("Error");
 			i++;
 		}

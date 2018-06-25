@@ -6,28 +6,19 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 17:41:47 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/22 18:30:33 by juliensobel      ###   ########.fr       */
+/*   Updated: 2018/06/25 19:41:02 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	shake_it_all(t_push **a, t_push **b)
+void	shake_it_all_2(t_push **a, t_push **b)
 {
-	while (*a && !(ft_is_sort_increasing(*a) && (!*b || (*a)->value > (*b)->value)))
+	while (*b && !(ft_is_sort_decreasing(*b)
+	&& (!*a || (*a)->value > (*b)->value)))
 	{
-		if ((*a)->next && (*a)->value > (*a)->next->value && *b && (*b)->next && (*b)->value < (*b)->next->value)
-			ss(a, b);
-		else if ((*a)->next && (*a)->value > (*a)->next->value)
-			sa(a);
-		else if (*b && (*b)->next && (*b)->value < (*b)->next->value)
-			sb(b);
-		else
-			pb(a, b);
-	}
-	while (*b && !(ft_is_sort_decreasing(*b) && (!*a || (*a)->value > (*b)->value)))
-	{
-		if (*a && (*a)->next && (*a)->value > (*a)->next->value && (*b)->next && (*b)->value < (*b)->next->value)
+		if (*a && (*a)->next && (*a)->value > (*a)->next->value
+		&& (*b)->next && (*b)->value < (*b)->next->value)
 			ss(a, b);
 		else if (*a && (*a)->next && (*a)->value > (*a)->next->value)
 			sa(a);
@@ -36,6 +27,24 @@ void	shake_it_all(t_push **a, t_push **b)
 		else
 			pa(a, b);
 	}
+}
+
+void	shake_it_all(t_push **a, t_push **b)
+{
+	while (*a && !(ft_is_sort_increasing(*a)
+	&& (!*b || (*a)->value > (*b)->value)))
+	{
+		if ((*a)->next && (*a)->value > (*a)->next->value
+		&& *b && (*b)->next && (*b)->value < (*b)->next->value)
+			ss(a, b);
+		else if ((*a)->next && (*a)->value > (*a)->next->value)
+			sa(a);
+		else if (*b && (*b)->next && (*b)->value < (*b)->next->value)
+			sb(b);
+		else
+			pb(a, b);
+	}
+	shake_it_all_2(a, b);
 	if (!check(a, b))
 		shake_it_all(a, b);
 }
@@ -51,12 +60,7 @@ int		divide_to_conquer(t_push **a, t_push **b, int med)
 		if (check(a, b))
 			return (1);
 		flag = 0;
-		/*if ((*a)->value <= med / 2)
-		{
-			pb(a, b);
-			rrb(b);
-		}
-		else*/ if ((*a)->value <= med)
+		if ((*a)->value <= med)
 			pb(a, b);
 		else
 			ra(a);
@@ -71,7 +75,7 @@ int		divide_to_conquer(t_push **a, t_push **b, int med)
 	return (0);
 }
 
-void		ft_shaker(t_push **a, t_push **b)
+void	ft_shaker(t_push **a, t_push **b)
 {
 	int	i;
 	int	med;

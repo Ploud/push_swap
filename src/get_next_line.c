@@ -6,13 +6,13 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 15:04:13 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/07 17:46:49 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/25 19:26:30 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_free(int fd, t_data **l)
+static void		ft_free(int fd, t_data **l)
 {
 	t_data	*f;
 
@@ -105,7 +105,7 @@ static t_data	*ft_set_p(const int fd, t_data **l)
 	}
 }
 
-int			get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	static t_data	*l;
 	t_data			*p;

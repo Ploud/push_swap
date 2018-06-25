@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:21:09 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/18 18:51:37 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/25 19:27:34 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,3 @@ void	ft_check_op(char *op, t_push **a, t_push **b)
 	else
 		ft_exception("Error");
 }
-
-/*
-** sa sb ss pa pb ra rrb rr rra rrb rrr
-** foret de if a remplacer par pointeurs sur fonctions
-*/

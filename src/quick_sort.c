@@ -6,42 +6,41 @@
 /*   By: lucien <lucien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 00:12:58 by lucien            #+#    #+#             */
-/*   Updated: 2018/06/20 12:05:33 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/25 19:40:50 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		process_distri_pyramid(t_push **a, t_push **b)
+void	process_distri_pyramid(t_push **a, t_push **b)
 {
 	int		div_mediane;
-	int		dir;
+	int		len;
 
-	div_mediane = get_len(*a) / 100 + 3;
-	dir = where_is_next(*a, get_mediane(*a, get_len(*a) / div_mediane));
-	while (get_len(*a) >= div_mediane && !ft_sort(a, b))
+	len = get_len(*a);
+	div_mediane = len / 100 + 3;
+	while (len >= div_mediane && !ft_sort(a, b))
 	{
-		if ((*a)->value <= get_mediane(*a, get_len(*a) / div_mediane / 2))
+		if ((*a)->value <= get_mediane(*a, len / div_mediane / 2))
 		{
 			pb(a, b);
 			rb(b);
 		}
-		else if ((*a)->value <= get_mediane(*a, get_len(*a) / div_mediane))
+		else if ((*a)->value <= get_mediane(*a, len / div_mediane))
 			pb(a, b);
-		//else if (dir)
-		//	ra(a);
 		else
 			ra(a);
+		len = get_len(*a);
 	}
-	if (get_len(*a) < SMALL_SIZE)
-		sort_3less_int(a, get_len(*a), get_min(*a), get_max(*a));
-	else if (get_len(*a) < MEDIUM_SIZE)
-		basic_selective_sort(a, b, get_len(*a));
+	if (len < SMALL_SIZE)
+		sort_3less_int(a, len, get_min(*a), get_max(*a));
+	else if (len < MEDIUM_SIZE)
+		basic_selective_sort(a, b, len);
 	else if (!ft_sort(a, b))
 		process_distri_pyramid(a, b);
 }
 
-void		process_selec_sort_opti(t_push **a, t_push **b)
+void	process_selec_sort_opti(t_push **a, t_push **b)
 {
 	int		max;
 	int		max2;
@@ -61,7 +60,8 @@ void		process_selec_sort_opti(t_push **a, t_push **b)
 			pa(a, b);
 			ret++;
 		}
-		else if ((p_intmax = get_position_int(*b, get_max(*b))) > get_len(*b) / 2)
+		else if ((p_intmax = get_position_int(*b,
+		get_max(*b))) > get_len(*b) / 2)
 			rrb(b);
 		else
 			rb(b);
@@ -95,7 +95,7 @@ int		where_is_next(t_push *a, int mediane)
 	return (0);
 }
 
-int			opti_get_max_moins_un(t_push **a, int max_b)
+int		opti_get_max_moins_un(t_push **a, int max_b)
 {
 	t_push	*tmp;
 	int		int_max;
@@ -111,7 +111,7 @@ int			opti_get_max_moins_un(t_push **a, int max_b)
 	return (int_max);
 }
 
-void		opti_place_ints_max(t_push **a, t_push **b, int ret)
+void	opti_place_ints_max(t_push **a, t_push **b, int ret)
 {
 	int ret2;
 
