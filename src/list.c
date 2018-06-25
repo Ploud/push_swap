@@ -6,11 +6,26 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/12 17:52:13 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/25 19:20:46 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/25 20:05:03 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int			global_count(t_push *a)
+{
+	int	nb;
+
+	nb = 0;
+	if (a && a->count == -1)
+		return (-1);
+	while (a)
+	{
+		nb += a->count;
+		a = a->next;
+	}
+	return (nb);
+}
 
 void	ft_free_list(t_push **begin_list)
 {

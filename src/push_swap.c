@@ -6,26 +6,11 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 18:18:00 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/25 19:40:10 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/25 20:14:08 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int			global_count(t_push *a)
-{
-	int	nb;
-
-	nb = 0;
-	if (a && a->count == -1)
-		return (-1);
-	while (a)
-	{
-		nb += a->count;
-		a = a->next;
-	}
-	return (nb);
-}
 
 static void	select_method(void (*tab[5])(t_push **, t_push **),
 int result[5], int argc, char **argv)
@@ -94,11 +79,26 @@ int			main(int argc, char **argv)
 {
 	void	(*tab[5])(t_push **, t_push **);
 	int		result[5];
+	char	**copie;
+	int 	i;
 
+	copie = NULL;
+	ft_init_tab(tab);
+	i = 0;
 	if (argc < 2)
 		return (0);
-	ft_init_tab(tab);
-	fill_result(tab, result, argc - 1, &argv[1]);
-	select_method(tab, result, argc - 1, &argv[1]);
+	if (argc == 2 && ft_strchr(argv[1], ' '))
+	{
+		copie = ft_strsplit(argv[1], ' ');
+		while (copie[i])
+			i++;
+		fill_result(tab, result, i, copie);
+		select_method(tab, result, i, copie);
+	}
+	else
+	{
+		fill_result(tab, result, argc - 1, &argv[1]);
+		select_method(tab, result, argc - 1, &argv[1]);
+	}
 	return (0);
 }

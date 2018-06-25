@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:32:07 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/25 19:39:17 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/25 20:05:31 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,11 @@ typedef struct		s_data
 ** push_swap -- list
 */
 
+int					global_count(t_push *a);
 t_push				*ft_creat_list(int argc, char **argv, int display);
 int					ft_valid_list(t_push *p);
 int					ft_bigger_than_integer(char *p, int value, int i);
 void				ft_free_list(t_push **begin_list);
-
-/*
-** push_swap -- push_swap
-*/
-
-int					global_count(t_push *a);
 
 /*
 ** push_swap -- exception
