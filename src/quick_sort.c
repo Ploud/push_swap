@@ -6,7 +6,7 @@
 /*   By: lucien <lucien@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 00:12:58 by lucien            #+#    #+#             */
-/*   Updated: 2018/06/25 19:40:50 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/26 17:46:26 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	process_distri_pyramid(t_push **a, t_push **b)
 
 	len = get_len(*a);
 	div_mediane = len / 100 + 3;
-	while (len >= div_mediane && !ft_sort(a, b))
+	while (len >= div_mediane)
 	{
 		if ((*a)->value <= get_mediane(*a, len / div_mediane / 2))
 		{
@@ -48,20 +48,20 @@ void	process_selec_sort_opti(t_push **a, t_push **b)
 	int		ret;
 
 	ret = 0;
-	while ((*b) != NULL && ft_sort(a, b) != 1)
+	while ((*b) != NULL)
 	{
-		if ((*b)->value == (max = get_max(*b)))
-		{
-			opti_place_ints_max(a, b, ret);
-			ret = 0;
-		}
-		else if ((*b)->value == (max2 = opti_get_max_moins_un(b, max)))
+		max = get_max(*b);
+		if ((*b)->value == (max2 = opti_get_max_moins_un(b, max)))
 		{
 			pa(a, b);
 			ret++;
 		}
-		else if ((p_intmax = get_position_int(*b,
-		get_max(*b))) > get_len(*b) / 2)
+		else if ((*b)->value == max)
+		{
+			opti_place_ints_max(a, b, ret);
+			ret = 0;
+		}
+		else if ((p_intmax = get_position_int(*b, max)) > get_len(*b) / 2)
 			rrb(b);
 		else
 			rb(b);

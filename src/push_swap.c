@@ -6,7 +6,7 @@
 /*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/10 18:18:00 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/25 20:14:08 by jsobel           ###   ########.fr       */
+/*   Updated: 2018/06/26 18:49:46 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,19 @@ int result[5], int argc, char **argv)
 	}
 }
 
+static void	free_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 static void	ft_init_tab(void (*tab[5])(t_push **, t_push **))
 {
 	tab[0] = &ft_process;
@@ -94,6 +107,7 @@ int			main(int argc, char **argv)
 			i++;
 		fill_result(tab, result, i, copie);
 		select_method(tab, result, i, copie);
+		free_tab(copie);
 	}
 	else
 	{
