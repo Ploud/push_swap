@@ -6,7 +6,7 @@
 #    By: lucien <lucien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:25:50 by lucien            #+#    #+#              #
-#    Updated: 2018/06/25 19:43:48 by jsobel           ###   ########.fr        #
+#    Updated: 2019/03/13 18:16:24 by jsobel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJ1		= $(addprefix ./obj/,$(SRC1:.c=.o))
 OBJ2		= $(addprefix ./obj/,$(SRC2:.c=.o))
 
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -g
 
 LIBFTA	= ./libft/libft.a
 LIBINCL = -I./libft/includes
@@ -54,29 +54,30 @@ LIBLINK	= -L./libft -lft
 all: obj libft $(NAME1) $(NAME2)
 
 obj:
-	mkdir -p ./obj/
+	@mkdir -p ./obj/
 
 ./obj/%.o:./src/%.c
-	$(CC) $(CFLAGS) $(LIBINCL) -Iincludes -o $@ -c $<
+	@$(CC) $(CFLAGS) $(LIBINCL) -Iincludes -o $@ -c $<
+	@printf "."
 
 libft: $(LIBFTA)
 
 $(LIBFTA):
-	make -C ./libft
+	@make -C ./libft
 
 $(NAME2): $(OBJ2)
-	$(CC) -o $(NAME2) $(OBJ2) $(LIBLINK)
+	@$(CC) -o $(NAME2) $(OBJ2) $(LIBLINK)
 
 $(NAME1): $(OBJ1)
-	$(CC) -o $(NAME1) $(OBJ1) $(LIBLINK)
+	@$(CC) -o $(NAME1) $(OBJ1) $(LIBLINK)
 
 clean:
-	rm -rf ./obj/
-	make -C ./libft clean
+	@rm -rf ./obj/
+	@make -C ./libft clean
 
 fclean: clean
-	rm -rf $(NAME1)
-	rm -rf $(NAME2)
-	make -C ./libft fclean
+	@rm -rf $(NAME1)
+	@rm -rf $(NAME2)
+	@make -C ./libft fclean
 
 re: fclean all

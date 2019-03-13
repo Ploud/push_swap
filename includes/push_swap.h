@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:32:07 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/25 20:05:31 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/13 19:04:49 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int					get_next_line(const int fd, char **line);
 ** push_swap -- operator
 */
 
-void				ft_check_op(char *op, t_push **a, t_push **b);
+int					ft_check_op(char *op, t_push **a, t_push **b);
 int					ft_swap(t_push **p);
 int					ft_rotate(t_push **p);
 void				ft_push(t_push **p1, t_push **p2);

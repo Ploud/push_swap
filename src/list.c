@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 17:52:13 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/25 20:05:03 by jsobel           ###   ########.fr       */
+/*   Created: 2019/03/13 18:11:37 by jsobel            #+#    #+#             */
+/*   Updated: 2019/03/13 18:11:47 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int		ft_valid_list(t_push *p)
 	if (!p->next || (p->next && ft_valid_list(p->next)))
 		return (1);
 	else
+	{
+		ft_free_list(&p);
 		return (0);
+	}
 }
 
 int		ft_bigger_than_integer(char *p, int value, int i)

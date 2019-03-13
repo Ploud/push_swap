@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:29:23 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/26 19:22:05 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/13 19:05:35 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,29 @@ static t_push	*split_arg(char *tab)
 	return (a);
 }
 
+static void		ft_get_command(t_push **a, t_push **b)
+{
+	char	*op;
+
+	while ((get_next_line(0, &op) > 0))
+	{
+		if (!ft_check_op(op, a, b))
+		{
+			ft_free_list(a);
+			ft_free_list(b);
+			free(op);
+			ft_exception("Error");
+		}
+		free(op);
+	}
+	if (op)
+		free(op);
+}
+
 int				main(int argc, char **argv)
 {
 	t_push	*a;
 	t_push	*b;
-	char	*op;
 
 	b = NULL;
 	if (argc < 2)
@@ -42,8 +60,7 @@ int				main(int argc, char **argv)
 		ft_exception("failed to creat list");
 	if (!ft_valid_list(a))
 		ft_exception("Error");
-	while ((get_next_line(0, &op) > 0))
-		ft_check_op(op, &a, &b);
+	ft_get_command(&a, &b);
 	if (ft_is_sort_increasing(a) && !b)
 		ft_putendl("OK");
 	else

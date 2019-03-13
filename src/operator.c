@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/07 18:21:09 by jsobel            #+#    #+#             */
-/*   Updated: 2018/06/25 19:27:34 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/13 18:46:45 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		ft_swap(t_push **p)
 	return (1);
 }
 
-void	ft_check_op(char *op, t_push **a, t_push **b)
+int		ft_check_op(char *op, t_push **a, t_push **b)
 {
 	if (!ft_strcmp(op, "sa"))
 		ft_swap(a);
@@ -103,5 +103,6 @@ void	ft_check_op(char *op, t_push **a, t_push **b)
 	else if (!ft_strcmp(op, "rrr") && ft_reverse_rotate(a))
 		ft_reverse_rotate(b);
 	else
-		ft_exception("Error");
+		return (0);
+	return (1);
 }

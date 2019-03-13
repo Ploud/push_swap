@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: julienso <julienso@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/10 18:18:00 by julienso          #+#    #+#             */
-/*   Updated: 2018/06/26 18:49:46 by jsobel           ###   ########.fr       */
+/*   Created: 2019/03/13 18:12:40 by jsobel            #+#    #+#             */
+/*   Updated: 2019/03/13 18:13:04 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,11 +98,11 @@ int			main(int argc, char **argv)
 	copie = NULL;
 	ft_init_tab(tab);
 	i = 0;
-	if (argc < 2)
+	if (argc < 2 || (argc == 2 && ft_strchr(argv[1], ' ')
+	&& !(copie = ft_strsplit(argv[1], ' '))))
 		return (0);
 	if (argc == 2 && ft_strchr(argv[1], ' '))
 	{
-		copie = ft_strsplit(argv[1], ' ');
 		while (copie[i])
 			i++;
 		fill_result(tab, result, i, copie);
