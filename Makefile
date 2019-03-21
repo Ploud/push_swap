@@ -6,7 +6,7 @@
 #    By: lucien <lucien@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/06 11:25:50 by lucien            #+#    #+#              #
-#    Updated: 2019/03/13 18:16:24 by jsobel           ###   ########.fr        #
+#    Updated: 2019/03/21 18:44:03 by jsobel           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,12 @@ SRC2	=	checker.c 		\
 OBJ1		= $(addprefix ./obj/,$(SRC1:.c=.o))
 OBJ2		= $(addprefix ./obj/,$(SRC2:.c=.o))
 
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+CC			= gcc
+CFLAGS		= -Wall -Wextra -Werror
 
-LIBFTA	= ./libft/libft.a
-LIBINCL = -I./libft/includes
-LIBLINK	= -L./libft -lft
+LIBFTA		= ./libft/libft.a
+LIBINCL 	= -I./libft/includes
+LIBLINK		= -L./libft -lft
 
 all: obj libft $(NAME1) $(NAME2)
 

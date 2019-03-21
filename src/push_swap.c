@@ -6,7 +6,7 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:12:40 by jsobel            #+#    #+#             */
-/*   Updated: 2019/03/13 18:13:04 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/21 18:12:41 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int result[5], int argc, char **argv)
 		i++;
 	}
 	if (!(a = ft_creat_list(argc, argv, 1)))
-		ft_exception("failed to creat list");
+		ft_exception("Error");
 	if (!ft_valid_list(a))
 		ft_exception("Error");
 	tab[index](&a, &b);
@@ -53,9 +53,12 @@ int result[5], int argc, char **argv)
 	while (i <= 4)
 	{
 		if (!(a = ft_creat_list(argc, argv, 0)))
-			ft_exception("failed to creat list");
-		if (!ft_valid_list(a))
 			ft_exception("Error");
+		if (!ft_valid_list(a))
+		{
+			ft_free_list(&a);
+			ft_exception("Error");
+		}
 		tab[i](&a, &b);
 		if (ft_is_sort_increasing(a) && !b)
 			result[i] = global_count(a);
@@ -93,7 +96,7 @@ int			main(int argc, char **argv)
 	void	(*tab[5])(t_push **, t_push **);
 	int		result[5];
 	char	**copie;
-	int 	i;
+	int		i;
 
 	copie = NULL;
 	ft_init_tab(tab);

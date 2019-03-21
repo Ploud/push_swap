@@ -6,15 +6,28 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/06 18:29:23 by jsobel            #+#    #+#             */
-/*   Updated: 2019/03/13 19:05:35 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/21 18:24:36 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+static void		free_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 static t_push	*split_arg(char *tab)
 {
-	char 	**copie;
+	char	**copie;
 	t_push	*a;
 	int		i;
 
@@ -24,6 +37,7 @@ static t_push	*split_arg(char *tab)
 	while (copie[i])
 		i++;
 	a = ft_creat_list(i, copie, 0);
+	free_tab(copie);
 	return (a);
 }
 
@@ -57,9 +71,12 @@ int				main(int argc, char **argv)
 	if (argc == 2 && ft_strchr(argv[1], ' '))
 		a = split_arg(argv[1]);
 	else if (!(a = ft_creat_list(argc - 1, &argv[1], 0)))
-		ft_exception("failed to creat list");
-	if (!ft_valid_list(a))
 		ft_exception("Error");
+	if (!ft_valid_list(a))
+	{
+		ft_free_list(&a);
+		ft_exception("Error");
+	}
 	ft_get_command(&a, &b);
 	if (ft_is_sort_increasing(a) && !b)
 		ft_putendl("OK");

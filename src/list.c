@@ -6,13 +6,13 @@
 /*   By: jsobel <jsobel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/13 18:11:37 by jsobel            #+#    #+#             */
-/*   Updated: 2019/03/13 18:11:47 by jsobel           ###   ########.fr       */
+/*   Updated: 2019/03/21 18:13:44 by jsobel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			global_count(t_push *a)
+int		global_count(t_push *a)
 {
 	int	nb;
 
@@ -57,10 +57,7 @@ int		ft_valid_list(t_push *p)
 	if (!p->next || (p->next && ft_valid_list(p->next)))
 		return (1);
 	else
-	{
-		ft_free_list(&p);
 		return (0);
-	}
 }
 
 int		ft_bigger_than_integer(char *p, int value, int i)
